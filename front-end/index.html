@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css" type="text/css">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="hiragana.js"></script>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <h1>Hiragana Tutor</h1>
+        
+        <div class="credits">
+            Resources Used<br><br>
+            images and gifs found at: https://commons.wikimedia.org/wiki/Hiragana<br>
+            audio found at: http://www.guidetojapanese.org/learn/complete/hiragana<br>
+        </div>
+
+        <h3 id="status"></h3>
+        
+        <div id="userManagement">
+            <div id="userReg">
+                <form id="newUserForm" method="post">
+                    Username: <input name="username" id="username" value="" type="text"><br>
+                    Password: <input name="password" id="password" value="" type="text">
+                    <input name="newUserSubmit" id="newUserSubmit" value="Register" type="submit">
+                </form>
+            </div>
+
+            <div id="login">
+                    <form id="loginForm" method="post">
+                        Username: <input name="username" id="newUsername" value="" type="text"><br>
+                        Password: <input name="password" id="newPassword" value="" type="text">
+                        <input name="loginSubmit" id="loginSubmit" value="Login" type="submit">
+                    </form>
+                </div>
+        </div>
+            
+        <div id="logout">
+                <button type="button" id="logoutButton">LOGOUT</button>
+        </div>
+            
+        <div id="container">
+            
+            <div id="quizButton">
+                <button type="button" id="quizButton">QUIZ ME</button>
+            </div>
+
+            <div id="scores">
+                <button type="button" id="scoresButton" onclick="showScores()">SHOW MY SCORES</button>
+                <button type="button" id="hideScores" onclick="hideScores()"> HIDE SCORES</button>
+                <!--Shows number of correct attemts on each Hiragana so far-->
+                <table id="scoresTable">
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>   
+            </div>
+
+            <button type="button" id="toggle" onclick="toggleProgress()">Toggle Learning Progress</button>
+            <p class="toggleText">Black = 10 or more correct answers<br>
+                Gray = 5 - 9 correct answers<br>
+                Silver = 3 - 4 correct answers<br>
+                Light Gray = 1 - 2 correct answers
+            </p>
+
+            <div id="tables">
+                <table id="mainTable">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th><h2>K</h2></th>
+                            <th><h2>S</h2></th>
+                            <th><h2>T</h2></th>
+                            <th><h2>N</h2></th>
+                            <th><h2>H</h2></th>
+                            <th><h2>M</h2></th>
+                            <th><h2>Y</h2></th>
+                            <th><h2>R</h2></th>
+                            <th><h2>W</h2></th>
+                            <th><h2></h2></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th><h2>A</h2></th>
+                            <td><img id="0" src="images/a.png"><br>'a'</td>
+                            <td><img id="5" src="images/ka.png"><br>'ka'</td>
+                            <td><img id="10" src="images/sa.png"><br>'sa'</td>
+                            <td><img id="15" src="images/ta.png"><br>'ta'</td>
+                            <td><img id="20" src="images/na.png"><br>'na'</td>
+                            <td><img id="25" src="images/ha.png"><br>'ha'</td>
+                            <td><img id="30" src="images/ma.png"><br>'ma'</td>
+                            <td><img id="35" src="images/ya.png"><br>'ya'</td>
+                            <td><img id="38" src="images/ra.png"><br>'ra'</td>
+                            <td><img id="43" src="images/wa.png"><br>'wa'</td>
+                            <td><img id="45" src="images/n.png"><br>'n'</td>
+                        </tr>
+                        <tr>
+                            <th><h2>I</h2></th>
+                            <td><img id="1" src="images/i.png"><br>'i'</td>
+                            <td><img id="6" src="images/ki.png"><br>'ki'</td>
+                            <td><img id="11" src="images/shi.png"><br>'shi'</td>
+                            <td><img id="16" src="images/chi.png"><br>'chi'</td>
+                            <td><img id="21" src="images/ni.png"><br>'ni'</td>
+                            <td><img id="26" src="images/hi.png"><br>'hi'</td>
+                            <td><img id="31" src="images/mi.png"><br>'mi'</td>
+                            <td><br></td>
+                            <td><img id="39" src="images/ri.png"><br>'ri'</td>
+                            <td><br></td>
+                            <td><br></td>
+                        </tr>
+                        <tr>
+                                <th><h2>U</h2></th>
+                            <td><img id="2" src="images/u.png"><br>'u'</td>
+                            <td><img id="7" src="images/ku.png"><br>'ku'</td>
+                            <td><img id="12" src="images/su.png"><br>'su'</td>
+                            <td><img id="17" src="images/tsu.png"><br>'tsu'</td>
+                            <td><img id="22" src="images/nu.png"><br>'nu'</td>
+                            <td><img id="27" src="images/fu.png"><br>'fu'</td>
+                            <td><img id="32" src="images/mu.png"><br>'mu'</td>
+                            <td><img id="36" src="images/yu.png"><br>'yu'</td>
+                            <td><img id="40" src="images/ru.png"><br>'ru'</td>
+                            <td><br></td>
+                            <td><br></td>
+                        </tr>
+                        <tr>
+                            <th><h2>E</h2></th>
+                            <td><img id="3" src="images/e.png"><br>'e'</td>
+                            <td><img id="8" src="images/ke.png"><br>'ke'</td>
+                            <td><img id="13" src="images/se.png"><br>'se'</td>
+                            <td><img id="18" src="images/te.png"><br>'te'</td>
+                            <td><img id="23" src="images/ne.png"><br>'ne'</td>
+                            <td><img id="28" src="images/he.png"><br>'he'</td>
+                            <td><img id="33" src="images/me.png"><br>'me'</td>
+                            <td><br></td>
+                            <td><img id="41" src="images/re.png"><br>'re'</td>
+                            <td><br></td>
+                            <td><br></td>
+                        </tr>
+                        <tr>
+                            <th><h2>O</h2></th>
+                            <td><img id="4" src="images/o.png"><br>'o'</td>
+                            <td><img id="9" src="images/ko.png"><br>'ko'</td>
+                            <td><img id="14" src="images/so.png"><br>'so'</td>
+                            <td><img id="19" src="images/to.png"><br>'to'</td>
+                            <td><img id="24" src="images/no.png"><br>'no'</td>
+                            <td><img id="29" src="images/ho.png"><br>'ho'</td>
+                            <td><img id="34" src="images/mo.png"><br>'mo'</td>
+                            <td><img id="37" src="images/yo.png"><br>'yo'</td>
+                            <td><img id="42" src="images/ro.png"><br>'ro'</td>
+                            <td><img id="44" src="images/wo.png"><br>'wo'</td>
+                            <td><br></td>
+                        </tr>
+                    
+                    </tbody>
+                </table>
+            </div>
+            
+            <div id="quiz">
+                <div id="quizSelector">
+                    <p id="selectorText">Select up to 10 hiragana to be tested on<br><br></p>
+                    <p id="selected"></p>
+                    <button type="button" id="startQuiz">START QUIZ</button>
+                    <button type="button" id="cancelQuiz">CANCEL QUIZ</button>
+                    <table id="quizTable">
+                        <tbody>
+                                <tr>
+                                    <td><img src="images/a.png"><br>a</td>
+                                    <td><img src="images/ka.png"><br>ka</td>
+                                    <td><img src="images/sa.png"><br>sa</td>
+                                    <td><img src="images/ta.png"><br>ta</td>
+                                    <td><img src="images/na.png"><br>na</td>
+                                    <td><img src="images/ha.png"><br>ha</td>
+                                    <td><img src="images/ma.png"><br>ma</td>
+                                    <td><img src="images/ya.png"><br>ya</td>
+                                    <td><img src="images/ra.png"><br>ra</td>
+                                    <td><img src="images/wa.png"><br>wa</td>
+                                    <td><img src="images/n.png"><br>n</td>
+                                </tr>
+                                <tr>
+                                    <td><img src="images/i.png"><br>i</td>
+                                    <td><img src="images/ki.png"><br>ki</td>
+                                    <td><img src="images/shi.png"><br>shi</td>
+                                    <td><img src="images/chi.png"><br>chi</td>
+                                    <td><img src="images/ni.png"><br>ni</td>
+                                    <td><img src="images/hi.png"><br>hi</td>
+                                    <td><img src="images/mi.png"><br>mi</td>
+                                    <td><br></td>
+                                    <td><img src="images/ri.png"><br>ri</td>
+                                    <td><br></td>
+                                    <td><br></td>
+                                </tr>
+                                <tr>
+                                    <td><img src="images/u.png"><br>u</td>
+                                    <td><img src="images/ku.png"><br>ku</td>
+                                    <td><img src="images/su.png"><br>su</td>
+                                    <td><img src="images/tsu.png"><br>tsu</td>
+                                    <td><img src="images/nu.png"><br>nu</td>
+                                    <td><img src="images/fu.png"><br>fu</td>
+                                    <td><img src="images/mu.png"><br>mu</td>
+                                    <td><img src="images/yu.png"><br>yu</td>
+                                    <td><img src="images/ru.png"><br>ru</td>
+                                    <td><br></td>
+                                    <td><br></td>
+                                </tr>
+                                <tr>
+                                    <td><img src="images/e.png"><br>e</td>
+                                    <td><img src="images/ke.png"><br>ke</td>
+                                    <td><img src="images/se.png"><br>se</td>
+                                    <td><img src="images/te.png"><br>te</td>
+                                    <td><img src="images/ne.png"><br>ne</td>
+                                    <td><img src="images/he.png"><br>he</td>
+                                    <td><img src="images/me.png"><br>me</td>
+                                    <td><br></td>
+                                    <td><img src="images/re.png"><br>re</td>
+                                    <td><br></td>
+                                    <td><br></td>
+                                </tr>
+                                <tr>
+                                    <td><img src="images/o.png"><br>o</td>
+                                    <td><img src="images/ko.png"><br>ko</td>
+                                    <td><img src="images/so.png"><br>so</td>
+                                    <td><img src="images/to.png"><br>to</td>
+                                    <td><img src="images/no.png"><br>no</td>
+                                    <td><img src="images/ho.png"><br>ho</td>
+                                    <td><img src="images/mo.png"><br>mo</td>
+                                    <td><img src="images/yo.png"><br>yo</td>
+                                    <td><img src="images/ro.png"><br>ro</td>
+                                    <td><img src="images/wo.png"><br>wo</td>
+                                    <td><br></td>
+                                </tr>
+                            </tbody>
+                    </table>
+                </div>
+
+                <div id="actualQuiz">
+                    <p id="question"></p><br>
+                    <p id="thisQuestion"></p><br><br>
+                    <table id="answers">
+                        <tr>
+                            <td id="ans1"></td>
+                            <td id="ans2"></td>
+                            <td id="ans3"></td>
+                            <td id="ans4"></td>
+                        </tr>
+                    </table>
+            </div>
+
+            <div id="results">
+                <h1 id="percent"></h1>
+                <button type="button" id="save" onclick="saveResults()">Save Results</button>
+                <button type="button" id="finish" onclick="finishQuiz()">Finish</button>
+                <p id="saved"></p>
+            </div>
+
+       </div>
+    </body>
+</html>

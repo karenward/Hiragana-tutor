@@ -1,0 +1,119 @@
+#mainTable{
+    border-collapse:separate; 
+    border-spacing:1em;
+    margin: auto;
+}
+
+p{
+    display: inline-block;
+}
+
+td{
+    padding: 0px 15px;
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+    border: 2px solid black;
+    font-size: 12px;
+    text-align: center;
+   
+}
+
+img{
+    height: 35px;
+    width: 35px;
+    
+}
+
+tr{
+    margin: 10px;
+}
+
+#container{
+    position: relative;
+    
+}
+
+#quizButton{
+   text-align: center;
+}
+
+#scoresButton{
+    text-align: center;
+ }
+
+#quiz{
+    display: none;
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+    border: 2px solid black;
+    z-index: 10;
+    text-align: center; 
+    
+}
+
+#quizLetters{
+    padding: 2px 10px 2px 10px;
+    border: 1px solid gray;
+}
+
+h1{
+    text-align: center;
+}
+
+#quizSelector{
+    
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+    border: 2px solid black;
+    z-index: 10;
+    text-align: center; 
+}
+
+#selectorText{
+    text-align: center; 
+}
+
+#selected{
+    border: 2px solid black;
+    text-align: center; 
+}
+
+#answers { 
+    display: inline-table; 
+    margin: auto;    
+}
+
+#results {
+    /*font-size: 50px;*/
+    display: none;
+}
+
+#logout {
+    display: none;
+}
+
+#actualQuiz {
+    display: none;
+    margin: auto;
+}
+
+#thisQuestion {
+    padding: 0px 15px;
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+    border: 2px solid black;
+    font-size: 12px;
+    text-align: center;
+}
+
+#scores {
+    display: none;
+}
+
+.toggleText {
+    display: none;
+}
+
+#hideScores {
+    display: none;
+}
+
+#toggle {
+    display: none;
+}
